@@ -17,3 +17,12 @@ mkcdir ()
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
+
+#Reset Terminal title
+rtitle ()
+{
+    echo -ne "\033]0;Terminal\007"
+}
+
+#Fix tmux colors
+export TERM="xterm-256color"

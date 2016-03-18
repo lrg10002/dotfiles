@@ -13,10 +13,17 @@ set list listchars=tab:\·\ ,trail:·
 
 set backspace=2
 
+set hlsearch
+
+noremap ] ;
+noremap [ ,
+
 " Set <Leader> to ,
 let mapleader = ','
 
-let g:go_fmt_command = "goimports"
+nmap <Space> <Leader>
+
+let g:go_fmt_command = "gofmt"
 
 set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -26,11 +33,15 @@ Plugin 'fatih/vim-go'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'myusuf3/numbers.vim'
-"Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 Plugin 'jstemmer/gotags'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 
 " Hide the autocompletion scratch/preview window.
@@ -40,9 +51,19 @@ filetype plugin indent on
 
 syntax on
 
+set background=dark
+colorscheme solarized
+
+
 set foldmethod=marker
 
+set laststatus=2
+let g:airline_powerline_fonts = 1
+set t_Co=256
+
 map ; :
+
+nmap d<Space> "_dd
 
 nmap <Leader>w :w<CR>
 nmap <Leader>q :wq<CR>
@@ -58,6 +79,8 @@ nmap <Leader>Sh <C-w>s
 nmap <Leader>Sv <C-w>v
 nmap <Leader>st <C-w>T
 nmap <Leader>nt :tabn<Space>
+
+nmap <Leader>h :noh<CR>
 
 au FileType go nmap <Leader>gd <Plug>(go-doc-browser)
 
@@ -81,10 +104,13 @@ nmap <C-l> <C-w>l
 nmap <C-left> <C-w><
 nmap <C-right> <C-w>>
 
-imap <C-Space> <Esc>
+inoremap <C-@> <Esc>
+inoremap <C-Space> <Esc>
 
 map <C-Down> <C-e>
 map <C-Up> <C-y>
 
 " Mappings for auto-inserts
 inoremap {<CR> {<CR>}<Esc>ko
+
+autocmd ColorScheme * hi Search cterm=NONE ctermfg=grey ctermbg=blue
