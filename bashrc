@@ -21,8 +21,14 @@ mkcdir ()
 #Reset Terminal title
 rtitle ()
 {
-    echo -ne "\033]0;Terminal\007"
+    echo -ne "\033]0;\007"
 }
 
 #Fix tmux colors
 export TERM="xterm-256color"
+
+#Add termbin
+alias tb="nc termbin.com 9999"
+
+#Project shortcuts
+export P_DORMSERVE="~/code/goprojects/dormserve/"
