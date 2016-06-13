@@ -5,6 +5,8 @@
 set nocompatible
 filetype off
 
+set shell=/bin/bash
+
 set nowrap
 set tabstop=4
 set shiftwidth=4
@@ -15,6 +17,8 @@ set list listchars=tab:\·\ ,trail:·
 set backspace=2
 
 set hlsearch
+
+let $GOPATH = '~/code/go'
 
 " }}}
 
@@ -42,7 +46,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'cespare/vim-toml'
 Plugin 'idanarye/vim-dutyl'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
+
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Hide the autocompletion scratch/preview window.
 set completeopt-=preview
@@ -96,6 +106,8 @@ nmap <Space>nt :tabn<Space>
 nmap <Space>oh <C-w>s:NERDTreeToggle<CR>
 nmap <Space>ov <C-w>v:NERDTreeToggle<CR>
 
+nmap <Space>f :CtrlP<CR>
+
 nmap <Space>h :noh<CR>
 
 map <Space>r :redraw!<CR>
@@ -109,8 +121,11 @@ nmap <Space>dr :!dmd -run %<CR>
 nmap <Space>k O<Esc>
 nmap <Space>j o<Esc>
 
-au FileType go nmap <Space>gd <Plug>(go-doc-browser)
-au FileType go nmap <Space>gi :GoImport<Space>
+nmap <Space>y "+y
+vmap <Space>y "+y
+
+au FileType go nmap <Space>gd :GoDef<CR>
+au FileType go nmap <Space>gi /import<Space>(<CR>:noh<CR>o""<Esc>ci"
 
 " For sanity
 nmap <C-j> <C-w>j
@@ -123,6 +138,8 @@ nmap <C-right> <C-w>>
 inoremap <C-@> <Esc>
 inoremap <C-Space> <Esc>
 
+imap <C-c> f<Esc>zzcl
+
 vnoremap <C-@> <Esc>
 vnoremap <C-Space> <Esc>
 
@@ -131,6 +148,7 @@ map <C-Up> <C-y>
 
 " Mappings for auto-inserts
 inoremap {<CR> {<CR>}<Esc>ko
+inoremap {; {<CR>};<Esc>ko
 "}}}
 
 " Misc {{{

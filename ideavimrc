@@ -1,0 +1,79 @@
+" Layne Gustafson's .vimrc
+" --[ Cooler Than Your Grandma's (TM) ]--
+
+
+
+filetype plugin indent on
+
+syntax on
+
+" Key Mappings {{{
+noremap ] ;
+noremap [ ,
+
+" Set <Leader> to ,
+let mapleader = ','
+
+map ; :!
+
+nmap d<Space> "_dd
+
+nmap <Space>w :w<CR>
+nmap <Space>q :wq<CR>
+nmap <Space>xq :q!<CR>
+
+nmap <Space>t :NERDTreeToggle<CR>
+
+nmap <C-b> :TagbarToggle<CR>
+nmap <Space>b :WinGo __Tagbar__<CR>
+
+nmap <Space>sh :sp<Space>
+nmap <Space>sv :vsp<Space>
+nmap <Space>Sh <C-w>s
+nmap <Space>Sv <C-w>v
+nmap <Space>st <C-w>T
+nmap <Space>nt :tabn<Space>
+
+nmap <Space>oh <C-w>s:NERDTreeToggle<CR>
+nmap <Space>ov <C-w>v:NERDTreeToggle<CR>
+
+nmap <Space>f :CtrlP<CR>
+
+nmap <Space>h :noh<CR>
+
+map <Space>r :redraw!<CR>
+
+map <Space>c <Leader>c<Space>
+
+map <Space>p "+p
+
+nmap <Space>dr :!dmd -run %<CR>
+
+nmap <Space>k O<Esc>
+nmap <Space>j o<Esc>
+
+au FileType go nmap <Space>gd :GoDef<CR>
+au FileType go nmap <Space>gi :GoImport<Space>
+
+" For sanity
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-left> <C-w><
+nmap <C-right> <C-w>>
+
+inoremap <C-@> <C-c>
+inoremap <C-Space> <C-c>
+
+vnoremap <C-@> <Esc>
+vnoremap <C-Space> <Esc>
+
+map <C-Down> <C-e>
+map <C-Up> <C-y>
+
+"}}}
+
+" Misc {{{
+set nu
+"}}}

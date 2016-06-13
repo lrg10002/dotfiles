@@ -5,24 +5,32 @@ end
 
 export TERM="xterm-256color"
 
+export GOPATH=/home/layne/code/go
+
 function tm
     if [ (count $argv) -lt 1 ]
         echo "Use \"tm help\" to display help."
-    else if [ $argv[1] = "n" ]
+    else if [ $argv[1] = "n" -o $argv[1] = "c" ]
         tmux new -s $argv[2]
     else if [ $argv[1] = "a" ]
         tmux a -t $argv[2]
     else if [ $argv[1] = "ls" ]
-        tmux ls
+        tmux ls ^/dev/null
+        if [ $status -ne 0 ]
+            echo "tmux is not running, so no sessions here!"
+        end
     else if [ $argv[1] = "d" -o $argv[1] = "k" -o $argv[1] = "r" ]
         tmux kill-session -t $argv[2]
     else if [ $argv[1] = "h" -o $argv[1] = "help" ]
+        echo ""
         echo "tm - tmux alias"
-        echo "  n <session>   - Create a new session"
+        echo ""
+        echo "  n|c <session>   - Create a new session"
         echo "  a <session>   - Attatch to a session"
         echo "  ls            - List all sessions"
         echo "  d|k <session> - Delete a session"
         echo "  h|help        - Display help"
+        echo ""
     end
 end
 
